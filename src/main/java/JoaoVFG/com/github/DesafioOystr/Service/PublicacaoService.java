@@ -27,7 +27,7 @@ public class PublicacaoService {
 
         Date date = dataParserUtil.conversorData(publicacaoDTO.getData());
 
-        PublicacaoGeradorChaveUnica publicacaoUniqueIDGenerator = new PublicacaoGeradorChaveUnica();
+        //PublicacaoGeradorChaveUnica publicacaoUniqueIDGenerator = new PublicacaoGeradorChaveUnica();
 
         Publicacao publicacao = new Publicacao();
 
@@ -37,7 +37,9 @@ public class PublicacaoService {
         publicacao.setTexto(publicacaoDTO.getTexto());
         publicacao.setEvento(publicacaoDTO.getEvento());
 
-        String chaveUnica = publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao);
+        //String chaveUnica = publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao);
+
+        String chaveUnica = PublicacaoGeradorChaveUnica.getInstance().geradorChaveUnica(publicacao);
         publicacao.setChaveUnica(chaveUnica);
 
         if(publicacaoRepository.findBychaveUnica(publicacao.getChaveUnica()) == null){

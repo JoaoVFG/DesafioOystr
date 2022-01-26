@@ -8,6 +8,17 @@ import java.security.MessageDigest;
 
 public class PublicacaoGeradorChaveUnica {
 
+    private final static PublicacaoGeradorChaveUnica publicacaoGeradorChaveUnica = new PublicacaoGeradorChaveUnica();
+
+    private PublicacaoGeradorChaveUnica(){
+
+    }
+
+    public static PublicacaoGeradorChaveUnica getInstance(){
+        return publicacaoGeradorChaveUnica;
+    }
+
+
     public String geradorChaveUnica(Publicacao publicacao){
 
         String stringCompleta = geradorString(publicacao);
