@@ -6,7 +6,7 @@ import JoaoVFG.com.github.DesafioOystr.Entity.Publicacao;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 
-public class PublicacaoUniqueIDGenerator {
+public class PublicacaoGeradorChaveUnica {
 
     public String geradorChaveUnica(Publicacao publicacao){
 
@@ -19,10 +19,7 @@ public class PublicacaoUniqueIDGenerator {
         }
         md.update(stringCompleta.getBytes());
         byte[] digest = md.digest();
-        String hash = DatatypeConverter
-                .printHexBinary(digest).toUpperCase();
-        System.out.println(hash);
-        return hash;
+        return DatatypeConverter.printHexBinary(digest).toUpperCase();
     }
 
     public String geradorString(Publicacao publicacao){

@@ -3,9 +3,10 @@ package JoaoVFG.com.github.DesafioOystr.Service;
 import JoaoVFG.com.github.DesafioOystr.DTO.PublicacaoDTO;
 import JoaoVFG.com.github.DesafioOystr.Entity.Publicacao;
 import JoaoVFG.com.github.DesafioOystr.Repository.PublicacaoRepository;
-import JoaoVFG.com.github.DesafioOystr.Service.Generator.PublicacaoUniqueIDGenerator;
+import JoaoVFG.com.github.DesafioOystr.Service.Generator.PublicacaoGeradorChaveUnica;
 import JoaoVFG.com.github.DesafioOystr.Service.Util.DataParserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -26,20 +27,26 @@ public class PublicacaoService {
 
         Date date = dataParserUtil.conversorData(publicacaoDTO.getData());
 
+        PublicacaoGeradorChaveUnica publicacaoUniqueIDGenerator = new PublicacaoGeradorChaveUnica();
 
         Publicacao publicacao = new Publicacao();
+
         publicacao.setId(null);
-        publicacao.setChaveUnica(null);
         publicacao.setData(date);
         publicacao.setProcesso(publicacaoDTO.getProcesso());
         publicacao.setTexto(publicacaoDTO.getTexto());
         publicacao.setEvento(publicacaoDTO.getEvento());
 
-        PublicacaoUniqueIDGenerator publicacaoUniqueIDGenerator = new PublicacaoUniqueIDGenerator();
+        String chaveUnica = publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao);
+        publicacao.setChaveUnica(chaveUnica);
 
-        publicacao.setChaveUnica(publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao));
+        if(publicacaoRepository.findBychaveUnica(publicacao.getChaveUnica()) == null){
 
-        publicacaoRepository.save(publicacao);
+            publicacaoRepository.save(publicacao);
+
+        }else{
+            throw new DataIntegrityViolationException("NÃO É POSSIVEL CADASTRAR ESSA PUBLICACAO, POIS ELA JA ESTA CADASTRADA");
+        }
 
         return findById(publicacao.getId());
     }
@@ -52,4 +59,9 @@ public class PublicacaoService {
         Optional<Publicacao> publicacao = publicacaoRepository.findById(id);
         return publicacao.orElseThrow();
     }
+
+    public Publicacao findByChaveUnica(String chaveUnica){
+        return publicacaoRepository.findBychaveUnica(chaveUnica);
+    }
+
 }

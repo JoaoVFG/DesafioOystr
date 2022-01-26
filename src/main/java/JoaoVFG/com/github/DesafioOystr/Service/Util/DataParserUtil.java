@@ -13,11 +13,8 @@ public class DataParserUtil {
 
     public Date conversorData(String dataString) throws ParseException{
         Date dataConvertida;
-        System.out.println(dataString);
 
         if(verificaTamanho(dataString)) dataString = insereHoraData(dataString);
-
-        System.out.println(dataString);
 
         try {
             dataConvertida = formatter.parse(dataString);
@@ -28,7 +25,6 @@ public class DataParserUtil {
     }
 
     private Boolean verificaTamanho(String data){
-        System.out.println(data.length());
         return data.length() == 10;
     }
 
