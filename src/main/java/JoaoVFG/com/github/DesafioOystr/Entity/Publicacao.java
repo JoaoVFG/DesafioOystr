@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -23,9 +20,15 @@ public class Publicacao {
 
     @JsonFormat(pattern="dd/MM/yyyy' 'hh:mm:ss")
     private Date data;
+
     private String evento;
+
+    @Column(length = 2500)
     private String texto;
+
     private String processo;
+
+    @Column(length = 2500)
     private String chaveUnica;
 
     public Publicacao(Integer id, Date data, String evento, String texto, String processo, String chaveUnica) {

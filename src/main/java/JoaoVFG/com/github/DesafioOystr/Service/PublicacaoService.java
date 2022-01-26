@@ -3,6 +3,7 @@ package JoaoVFG.com.github.DesafioOystr.Service;
 import JoaoVFG.com.github.DesafioOystr.DTO.PublicacaoDTO;
 import JoaoVFG.com.github.DesafioOystr.Entity.Publicacao;
 import JoaoVFG.com.github.DesafioOystr.Repository.PublicacaoRepository;
+import JoaoVFG.com.github.DesafioOystr.Service.Generator.PublicacaoUniqueIDGenerator;
 import JoaoVFG.com.github.DesafioOystr.Service.Util.DataParserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,9 @@ public class PublicacaoService {
         publicacao.setTexto(publicacaoDTO.getTexto());
         publicacao.setEvento(publicacaoDTO.getEvento());
 
+        PublicacaoUniqueIDGenerator publicacaoUniqueIDGenerator = new PublicacaoUniqueIDGenerator();
+
+        publicacao.setChaveUnica(publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao));
 
         publicacaoRepository.save(publicacao);
 
