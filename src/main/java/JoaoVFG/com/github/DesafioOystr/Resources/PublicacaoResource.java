@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class PublicacaoResource {
     }
 
     @RequestMapping(value = "/insere", method = RequestMethod.POST)
-    public ResponseEntity<Publicacao> createPublicacao(@RequestBody PublicacaoDTO publicacaoDTO) {
+    public ResponseEntity<Publicacao> createPublicacao(@RequestBody PublicacaoDTO publicacaoDTO) throws ParseException {
         Publicacao novaPublicacao = publicacaoService.create(publicacaoDTO);
         return ResponseEntity.ok().body(novaPublicacao);
     }

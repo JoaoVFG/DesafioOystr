@@ -21,7 +21,7 @@ public class Publicacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+    @JsonFormat(pattern="dd/MM/yyyy' 'hh:mm:ss")
     private Date data;
     private String evento;
     private String texto;
