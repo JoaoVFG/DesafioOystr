@@ -9,7 +9,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class DataParserUtil {
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy' 'hh:mm:ss");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss");
 
     public Date conversorData(String dataString) throws ParseException{
         Date dataConvertida;

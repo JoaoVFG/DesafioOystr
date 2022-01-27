@@ -23,11 +23,10 @@ public class PublicacaoService {
 
     public Publicacao create(PublicacaoDTO publicacaoDTO) throws ParseException {
 
+
         DataParserUtil dataParserUtil = new DataParserUtil();
 
         Date date = dataParserUtil.conversorData(publicacaoDTO.getData());
-
-        //PublicacaoGeradorChaveUnica publicacaoUniqueIDGenerator = new PublicacaoGeradorChaveUnica();
 
         Publicacao publicacao = new Publicacao();
 
@@ -37,7 +36,6 @@ public class PublicacaoService {
         publicacao.setTexto(publicacaoDTO.getTexto());
         publicacao.setEvento(publicacaoDTO.getEvento());
 
-        //String chaveUnica = publicacaoUniqueIDGenerator.geradorChaveUnica(publicacao);
 
         String chaveUnica = PublicacaoGeradorChaveUnica.getInstance().geradorChaveUnica(publicacao);
         publicacao.setChaveUnica(chaveUnica);
