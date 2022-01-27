@@ -19,13 +19,13 @@ public class PublicacaoGeradorChaveUnica {
     }
 
 
-    public String geradorChaveUnica(Publicacao publicacao){
+    public String geradorChaveUnica(Publicacao publicacao) {
 
         String stringCompleta = geradorString(publicacao);
         MessageDigest md;
-        try{
+        try {
             md = MessageDigest.getInstance("MD5");
-        }catch(Exception e){
+        } catch (Exception e) {
             return "Erro ao instanciar messageDigest";
         }
         md.update(stringCompleta.getBytes());
@@ -33,7 +33,7 @@ public class PublicacaoGeradorChaveUnica {
         return DatatypeConverter.printHexBinary(digest).toUpperCase();
     }
 
-    public String geradorString(Publicacao publicacao){
+    public String geradorString(Publicacao publicacao) {
         return publicacao.getData() + publicacao.getEvento() + publicacao.getTexto() + publicacao.getProcesso();
     }
 }

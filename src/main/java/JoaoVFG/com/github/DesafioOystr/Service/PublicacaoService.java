@@ -22,7 +22,7 @@ public class PublicacaoService {
 
 
     @SneakyThrows
-    public Publicacao create(PublicacaoDTO publicacaoDTO){
+    public Publicacao create(PublicacaoDTO publicacaoDTO) {
 
 
         DataParserUtil dataParserUtil = new DataParserUtil();
@@ -41,27 +41,27 @@ public class PublicacaoService {
         String chaveUnica = PublicacaoGeradorChaveUnica.getInstance().geradorChaveUnica(publicacao);
         publicacao.setChaveUnica(chaveUnica);
 
-        if(publicacaoRepository.findBychaveUnica(publicacao.getChaveUnica()) == null){
+        if (publicacaoRepository.findBychaveUnica(publicacao.getChaveUnica()) == null) {
 
             publicacaoRepository.save(publicacao);
 
-        }else{
+        } else {
             throw new DataIntegrityViolationException("NÃO É POSSIVEL CADASTRAR ESSA PUBLICACAO, POIS ELA JA ESTA CADASTRADA");
         }
 
         return findById(publicacao.getId());
     }
 
-    public List<Publicacao> findAll(){
+    public List<Publicacao> findAll() {
         return publicacaoRepository.findAll();
     }
 
-    public Publicacao findById(Integer id){
+    public Publicacao findById(Integer id) {
         Optional<Publicacao> publicacao = publicacaoRepository.findById(id);
         return publicacao.orElseThrow();
     }
 
-    public Publicacao findByChaveUnica(String chaveUnica){
+    public Publicacao findByChaveUnica(String chaveUnica) {
         return publicacaoRepository.findBychaveUnica(chaveUnica);
     }
 

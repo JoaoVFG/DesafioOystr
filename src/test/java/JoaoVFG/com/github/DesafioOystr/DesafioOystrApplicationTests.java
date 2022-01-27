@@ -36,7 +36,7 @@ public class DesafioOystrApplicationTests {
 
 
 	@Before
-	public void inicializacaoDeObjetos(){
+	public void inicializacaoDeObjetos() {
 		publicacaoDTO1 = new PublicacaoDTO("22/12/2022", "0000002-31.2010.5.01.001", "Ut sit amet nisl id leo eleifend dignissim. Curabitur eu pellentesque sem. Mauris quis condimentum tortor. Curabitur augue arcu, fermentum vel luctus et, consectetur laoreet nibh. Fusce volutpat diam at risus ultrices, sit amet aliquet lorem viverra. Morbi id ex sem. Donec varius scelerisque sem a aliquet. Nam tristique accumsan diam, tempor tristique magna sodales vel. Aliquam quis feugiat mi, nec tempus est. Duis metus nibh, pretium ac ullamcorper et, imperdiet ut mi. Nullam nunc purus, congue quis velit eget, scelerisque congue nisl. Mauris id mattis odio. Curabitur eu leo eu velit elementum mattis eget in mauris.","DESPACHO");
 		publicacaoDTO2 = new PublicacaoDTO("21/07/2022 17:00:00", "0000002-31.2010.5.01.001","123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123","DESPACHO");
 		publicacaoDTO3 = new PublicacaoDTO("24/06/2022 09:51:00", "0000002-31.2010.5.01.001", "TEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTOTEXTO","DESPACHO");
@@ -45,7 +45,7 @@ public class DesafioOystrApplicationTests {
 	}
 
 	@Test
-	public void teste01_Insercao(){
+	public void teste01_Insercao() {
 		publicacaoService.create(publicacaoDTO1);
 		publicacaoService.create(publicacaoDTO2);
 		publicacaoService.create(publicacaoDTO3);
@@ -54,21 +54,21 @@ public class DesafioOystrApplicationTests {
 	}
 
 	@Test
-	public void teste02_PesquisaTodos(){
+	public void teste02_PesquisaTodos() {
 		List<Publicacao> publicacoes = publicacaoService.findAll();
 		assertNotNull(publicacoes);
 	}
 
 	@Test
-	public void teste03_PesquisaPorChaveUnica(){
+	public void teste03_PesquisaPorChaveUnica() {
 		Publicacao publicacao = publicacaoService.findByChaveUnica("DACE6EEB5723A14EF1B0165430CDAFA8");
 		assertNotNull(publicacao);
 	}
 
 	@Test
-	public void teste04_TentandoInserirPublicacaoJaInserida(){
+	public void teste04_TentandoInserirPublicacaoJaInserida() {
 
-		Exception exception = assertThrows(DataIntegrityViolationException.class, () ->{
+		Exception exception = assertThrows(DataIntegrityViolationException.class, () -> {
 			Publicacao publicacao = publicacaoService.create(publicacaoDTO1);
 		});
 

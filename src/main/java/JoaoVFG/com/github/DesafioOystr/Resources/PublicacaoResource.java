@@ -20,13 +20,13 @@ public class PublicacaoResource {
     PublicacaoService publicacaoService;
 
     @RequestMapping(value = "/buscaPublicacao", method = RequestMethod.GET)
-    public ResponseEntity<List<Publicacao>> findAll(){
+    public ResponseEntity<List<Publicacao>> findAll() {
         List<Publicacao> publicacoes = publicacaoService.findAll();
         return ResponseEntity.ok().body(publicacoes);
     }
 
     @RequestMapping(value = "/insere", method = RequestMethod.POST)
-    public ResponseEntity<Publicacao> createPublicacao(@RequestBody PublicacaoDTO publicacaoDTO){
+    public ResponseEntity<Publicacao> createPublicacao(@RequestBody PublicacaoDTO publicacaoDTO) {
         Publicacao novaPublicacao = publicacaoService.create(publicacaoDTO);
         return ResponseEntity.ok().body(novaPublicacao);
     }
