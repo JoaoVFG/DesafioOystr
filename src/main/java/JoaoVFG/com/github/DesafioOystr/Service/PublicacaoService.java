@@ -5,11 +5,11 @@ import JoaoVFG.com.github.DesafioOystr.Entity.Publicacao;
 import JoaoVFG.com.github.DesafioOystr.Repository.PublicacaoRepository;
 import JoaoVFG.com.github.DesafioOystr.Service.Generator.PublicacaoGeradorChaveUnica;
 import JoaoVFG.com.github.DesafioOystr.Service.Util.DataParserUtil;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +21,8 @@ public class PublicacaoService {
     PublicacaoRepository publicacaoRepository;
 
 
-    public Publicacao create(PublicacaoDTO publicacaoDTO) throws ParseException {
+    @SneakyThrows
+    public Publicacao create(PublicacaoDTO publicacaoDTO){
 
 
         DataParserUtil dataParserUtil = new DataParserUtil();

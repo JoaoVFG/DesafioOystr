@@ -11,10 +11,10 @@ public class DataParserUtil {
 
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy' 'HH:mm:ss");
 
-    public Date conversorData(String dataString) throws ParseException{
+    public Date conversorData(String dataString) throws ParseException {
         Date dataConvertida;
 
-        if(verificaTamanho(dataString)) dataString = insereHoraData(dataString);
+        if (verificaTamanho(dataString)) dataString = insereHoraData(dataString);
 
         try {
             dataConvertida = formatter.parse(dataString);
@@ -24,11 +24,11 @@ public class DataParserUtil {
         return dataConvertida;
     }
 
-    private Boolean verificaTamanho(String data){
+    private Boolean verificaTamanho(String data) {
         return data.length() == 10;
     }
 
-    private String insereHoraData(String data){
+    private String insereHoraData(String data) {
         return data + " 00:00:00";
     }
 }
